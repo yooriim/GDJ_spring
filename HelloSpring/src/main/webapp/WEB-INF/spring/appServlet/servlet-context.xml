@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model
+	mvc namespace(?) 내에 있는 애. 어노테이션 쓰려면 여기에 추가해줘야 한다.
+	 -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 베이스패키지에 어던게 선언되어 있는지 잘봐야 댐! 다른 경로로 패키지 만들경우 못불럴와욤  -->
+	<context:component-scan base-package="com.bs.spring" />
+	
+	<!-- pojo클래스 bean으로 등록하기 -->
+	<!-- 아래 내용은 Animal alonge=new Animal(); 과 같다 -->
+<!-- 		<beans:bean id="alonge" class="com.bs.spring.model.vo.Animal">				
+		</beans:bean> -->
+		
+		<!-- 생성된 객체에 setter를 이용해서 값을 대입 -->
+		<!-- 이거 수정하면 서버 다시 돌려야됨 걍 머 좀 만졌다 치면 서버 올렸다 내리기 -->
+		<!-- <beans:bean id="alonge" class="com.bs.spring.model.vo.Animal">				
+			<beans:property name="name" value="아롱이"/>
+			<beans:property name="age" value="8"/>
+			<beans:property name="gender" value="여"/>
+			<beans:property name="weight" value="5.8"/>				
+		</beans:bean>
+		 -->
+		
+		<!-- 
+			매개변수 있는 생성자로 초기화하기
+			모든 항목을 다 넣어줘야 함(안넣으면 에러나욤)
+			모든 항목을 다 넣지 ㅇ낳고 사용하려면 그거만 들어있는 매개변수 있는 생성자 새로 만들어서 쓰면 댐 ㅇㅋ?
+		 -->
+		<beans:bean id="alonge" class="com.bs.spring.model.vo.Animal">
+			<beans:constructor-arg index="0" value="아롱이2"/>
+			<beans:constructor-arg index="1" value="15"/>
+			<beans:constructor-arg index="2" value="남"/>
+			<beans:constructor-arg index="3" value="6.8"/>
+		</beans:bean>		
+
+		<beans:bean id="dog" class="com.bs.spring.model.vo.Animal" 
+		init-method="initTest" destroy-method="destroyTest"/>
+		<!-- 
+		No qualifying bean of type 'com.bs.spring.model.vo.Animal' 
+		available: expected single matching bean but found 2: alonge,dog
+		: Autowired가 걸려 있을 떄 똑같은게 두개 걸리면 오류나욤~!~!
+		syso(a)라고 했을떄 어떤 animal을 데려와야할지 모르기때문에 ㅠ 
+			 -->
+			 
+		<beans:bean id="yeonji" class="com.bs.spring.model.vo.Person">
+			<beans:property name="name" value="연지"/>
+			<beans:property name="age" value="31"/>
+			<beans:property name="myanimal" ref="alonge"/>
+			
+		</beans:bean>
+	
+</beans:beans>
