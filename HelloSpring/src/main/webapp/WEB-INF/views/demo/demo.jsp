@@ -115,6 +115,18 @@ div#demo-container{
 					onclick="requestSend('demo/demo7.do')">ModelAndView 반환하기</button>
 				</div>
 			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="col-sm-12 btn btn-outline-primary" 
+					onclick="requestSend('demo/insertDemo.do')">인서트 테스트하기</button>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="col-sm-12 btn btn-outline-primary" 
+					onclick="requestSend('demo/selectDemoList.do')">전체조회</button>
+				</div>
+			</div>
 		</form>
 	</div>
 </section>

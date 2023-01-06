@@ -51,9 +51,22 @@
 							<a class="nav-link" href="${path}/demo/demo.do">Demo</a>
 						</li>
 					</ul>
-					
-						<button class="btn btn-outline-success my-2 my-sm-0"
-						data-toggle="modal" data-target="#loginModal">로그인</button>
+						<c:if test="${sessionScope.loginMember==null }">
+							<button class="btn btn-outline-success my-2 my-sm-0"
+							data-toggle="modal" data-target="#loginModal">로그인</button>
+							&nbsp;
+							<button class="btn btn-outline-primary my-2 my-sm-0" onclick="location.assign('${path}/member/enrollMember.do')">
+								회원가입
+							</button>
+							
+						</c:if>
+						<c:if test="${sessionScope.loginMember!=null }">
+							<span>
+								<a href="${path}/member/mypage.do"><c:out value="${loginMember.userName }"/>님,</a> 환영합니다 
+							</span>
+							<button class="btn btn-outline-success my-2 my-sm-0" onclick="location.replace('${path}/member/logoutMember.do')">로그아웃</button>
+						</c:if>
+						
 						&nbsp;&nbsp;&nbsp;
 <%-- 						<button class="btn btn-outline-success my-2 my-sm-0"
 						onclick="location.assign('${path}/member/memberEnroll.do')">회원가입</button>
@@ -81,14 +94,19 @@
 						</button>
 					</div>
 					
-					<div class="modal-body">
-																	
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-outline-success">로그인</button>
-						<button type="button" class="btn btn-outline-success"
-						data-dismiss="modal">취소</button>
-					</div>
+					<form action="${path }/member/loginMember.do" method="post">
+						<div class="modal-body">
+							<input type="text" name="userId" class="form-control" placeholder="아이디 입력" required><br>
+							<input type="password" name="password" class="form-control" placeholder="비밀번호 입력" required>
+							
+																			
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-outline-success">로그인</button>
+							<button type="button" class="btn btn-outline-success"
+							data-dismiss="modal">취소</button>
+						</div>
+					</form>
 					
 				</div>
 			</div>

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -20,10 +21,20 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bs.spring.member.vo.Demo;
+import com.bs.spring.member.vo.Member;
+import com.bs.spring.model.service.DemoService;
 
 @Controller
 public class DemoController {
-
+	
+	@Autowired
+	private DemoService service;
+	
+	@Autowired
+	public DemoController(DemoService service) {
+		this.service=service;
+	}
+	
 	//클라이언트가 요청한 서비스를 실행해주는 기능
 	//클라이언트가 요청한 서비스 주소(url)에 맞는 메소드를 구현
 	//메소드 구현할 때 서비스 주소와 연결해주는 어노테이션을 선언
@@ -89,7 +100,7 @@ public class DemoController {
 		String email=req.getParameter("devEmail");
 		String gender=req.getParameter("devGender");
 		String[] devLang=req.getParameterValues("devLang");
-		System.out.println(name+age+gender+email);
+		//System.out.println(name+age+gender+email);
 		for(String d : devLang) {
 			System.out.println(d);
 		}
@@ -204,6 +215,33 @@ public class DemoController {
 		return List.of("1","2","3","4");
 	}
 	
+	@RequestMapping("demo/insertDemo.do")
+	public String insertDemo(Demo demo) {
+		int result=service.insertDemo(demo);
+		//spring에서 redirect 처리하기
+		return "redirect:/demo/demo.do";
+	}
 	
 	
+	@RequestMapping("demo/selectDemoList.do")
+	public ModelAndView demoList(ModelAndView mv) {
+		List<Demo> list=service.selectDemoList();
+		System.out.println(list);
+		mv.addObject("demos",list);
+		mv.setViewName("demo/demolist");
+		return mv;
+	
+		//	public String selectDemoList() {		
+//		List<Demo> list=service.selectDemoList();
+//		System.out.println(list);
+//		return "";
+
+	}
+	
+
+	
+	
+
 }
+	
+

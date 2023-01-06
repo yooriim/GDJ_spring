@@ -2,4 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
+	<typeAliases>
+		<typeAlias type="com.bs.spring.member.vo.Demo" alias="demo"/>
+		<typeAlias type="com.bs.spring.common.StringArrayHandler" alias="strArr"/>
+		<typeAlias type="com.bs.spring.member.vo.Member" alias="member"/>
+		
+	</typeAliases>
+	
 </configuration>
