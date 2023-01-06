@@ -78,11 +78,10 @@ public class HomeController {
 //		a.setAge(8);
 //		a.setGender("여");
 		
-		System.out.println(p);
-		System.out.println(food);
+//		System.out.println(p);
+//		System.out.println(food);
 //		System.out.println(alonge);
-//		System.out.println("dog : "+dog);
-		
+//		System.out.println("dog : "+dog);		
 		
 		//메인화면을 출력해주는 mapping 메소드
 		// /WEB-INF/views/return값.jsp -> == request.getRequestDispatcher("/WEB-INF/views/return값.jsp").forward(req,res);		
