@@ -86,6 +86,31 @@ public class HomeController {
 		//메인화면을 출력해주는 mapping 메소드
 		// /WEB-INF/views/return값.jsp -> == request.getRequestDispatcher("/WEB-INF/views/return값.jsp").forward(req,res);		
 		
+			
+		// 23.01.09
+		// Logger가 제공하는 메소드 이용해서 log 출력하기
+		// 메소드 : debug, info, warn, error 
+		// 메소드는 출력되는 상황에 따라 결정해서 사용
+		// debug : 개발 시에 사용하는 로그
+		// info : 프로그램 실행 중 사용자에게 전달해야 하는 메세지 로그
+		// warn : 비정상적으로 로직이 돌아갔을 때 경고 출력
+		// error : 에러났을 때 ! 로그
+				
+		//logger 태그에 설정되어 있는 level 에 따라 메소드 실행여부가 결정됨.
+		//debug < info < warn < error 
+		
+		//logger.debug("난 debug야");
+		//logger.info("난 info");
+		//logger.warn("난 warn");
+		//logger.error("난 error");
+		
+		//logger로 다른 타입의 값 출력하기
+		//logger.debug("food {}",food);
+		
+		
+		
+		
+		
 		return "index";
 		
 	}

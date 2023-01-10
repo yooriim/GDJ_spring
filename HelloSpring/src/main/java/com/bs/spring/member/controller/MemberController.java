@@ -13,12 +13,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bs.spring.member.service.MemberService;
 import com.bs.spring.member.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @SessionAttributes({"loginMember"})
-@RequestMapping("/member/")
+@RequestMapping("/member")
+@Slf4j
 public class MemberController {
+	//Slf4j 롬복으로 요걸 추가하면 멤버변수로 log가 생성됨 (outline가서 확인 가넝)
 	
-
+	//로거! 
+	//private final Logger logger=LoggerFactory.getLogger(MemberController.class);
+	
 	private MemberService service;
 	private BCryptPasswordEncoder passwordEncoder; 
 	
@@ -37,6 +43,7 @@ public class MemberController {
 	@RequestMapping("/loginMember.do")
 	//public String loginMember(String userId,String password) {
 	public String loginMember(Member m,HttpSession session) {	//m에 전체 데이터가 안들어가 있어도 됨
+		
 //	public String loginMember(Member m,Model model) {	
 		//Session에 데이터를 저장하고 관리
 		//HttpSession 선언만 하면 알아서 만들어주ㅠㅁ
@@ -88,7 +95,9 @@ public class MemberController {
 
 	@RequestMapping("/enrollMemberend.do")
 	public ModelAndView enrollMemberend(Member m, ModelAndView mv) {		
-		System.out.println(m);
+		//System.out.println(m);
+		//이젠 이렇게 쓸 수 있다 ↓
+		log.debug("파라미터로 전달된 member :  {}",m);
 		
 		//password암호화 처리하기
 		String encodePassword=passwordEncoder.encode(m.getPassword()); //암호화 처리해주는 메소드

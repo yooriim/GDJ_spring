@@ -50,6 +50,9 @@
 						<li class="navbar-item">
 							<a class="nav-link" href="${path}/demo/demo.do">Demo</a>
 						</li>
+						<li class="navbar-item">
+							<a class="nav-link" href="${path}/memo/memo.do">Memo</a>
+						</li>
 					</ul>
 						<c:if test="${sessionScope.loginMember==null }">
 							<button class="btn btn-outline-success my-2 my-sm-0"
