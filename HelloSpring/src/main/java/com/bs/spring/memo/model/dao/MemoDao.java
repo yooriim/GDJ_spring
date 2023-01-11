@@ -11,7 +11,7 @@ public interface MemoDao {
 	
 	List<Memo> memoList(SqlSessionTemplate session);
 	
-	int writeMemo(SqlSessionTemplate session,Memo m);
+	int insertMemo(SqlSessionTemplate session,Memo m);
 	
 	int selectMemoListCount(SqlSessionTemplate session);
 	

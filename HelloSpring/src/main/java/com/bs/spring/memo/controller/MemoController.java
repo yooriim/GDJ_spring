@@ -29,7 +29,7 @@ public class MemoController {
 	}
 	
 	@RequestMapping(value="/memo.do", method= {RequestMethod.GET})
-	public ModelAndView memoList(ModelAndView mv,
+	public ModelAndView selectMemoList(ModelAndView mv,
 			@RequestParam(value="cPage", defaultValue="1") int cPage, 
 			@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 			//cPage, numPerpage는 무조건 넘어오는 값이 아니니까 안넘어올 때를 생각해서 대체될 값을 넣어줘야함 그럴때 requestParam을 쓰자!
@@ -37,7 +37,7 @@ public class MemoController {
 
 		
 		List<Memo> list=service.memoList();
-		log.debug("메모 하이 : {}",list);		
+		//log.debug("메모 하이 : {}",list);		
 		
 		
 //		mv.addObject("memo",list);
@@ -61,7 +61,7 @@ public class MemoController {
 	//@PostMapping("/writeMemoEnd.do")
 	@RequestMapping(value="/writeMemoEnd.do", method= {RequestMethod.POST})
 	public ModelAndView writeMemoEnd(ModelAndView mv,Memo m) {
-		int result=service.writeMemo(m);
+		int result=service.insertMemo(m);
 		if(result>0) {
 			mv.addObject("msg","성공");
 			mv.addObject("loc","/memo/memo.do");

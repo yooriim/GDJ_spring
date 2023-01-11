@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.bs.spring.memo.model.vo.Memo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class MemoDaoImpl implements MemoDao {
 
 	@Override
@@ -26,9 +29,11 @@ public class MemoDaoImpl implements MemoDao {
 	}
 
 	@Override
-	public int writeMemo(SqlSessionTemplate session, Memo m) {
+	public int insertMemo(SqlSessionTemplate session, Memo m) {
 		// TODO Auto-generated method stub
-		return session.insert("memo.writeMemo",m);
+		
+		log.debug("insert ㅁㅅㄷ 실행");
+		return session.insert("memo.insertMemo",m);
 	}
 
 	@Override

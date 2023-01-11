@@ -32,9 +32,9 @@ public class MemoServiceImpl implements MemoService {
 
 
 	@Override
-	public int writeMemo(Memo m) {
+	public int insertMemo(Memo m) {
 		// TODO Auto-generated method stub
-		return dao.writeMemo(session,m);
+		return dao.insertMemo(session,m);
 	}
 
 

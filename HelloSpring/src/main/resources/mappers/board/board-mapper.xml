@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+
+	<select id="boardList" resultType="board">
+		SELECT * FROM BOARD ORDER BY BOARDNO DESC
+	</select>
+
+	<select id="boardListCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+	
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO BOARD VALUES(SEQ_BOARDNO.NEXTVAL,#{boardTitle},#{boardWriter},#{boardContent},SYSDATE,0)
+	</insert>
+	
+	<select id="viewBoard" parameterType="_int" resultType="board">
+		SELECT * FROM BOARD WHERE BOARDNO=#{boardNo}
+	</select>
+	
+</mapper>

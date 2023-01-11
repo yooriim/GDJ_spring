@@ -9,7 +9,7 @@ public interface MemoService {
 	
 	List<Memo> memoList();
 	
-	int writeMemo(Memo m);
+	int insertMemo(Memo m);
 	
 	int selectMemoListCount();
 	
