@@ -18,12 +18,15 @@
 
 <div id="board-container">
 	<input type="text" class="form-control" name="boardTitle" id="boardTitle" value="${content.boardTitle }" required>
-	<input type="text" class="form-control" name="boardWriter" value="${content.boardWriter }" readonly required>
+	<input type="text" class="form-control" name="boardWriter" value="${content.boardWriter.userId }" readonly required>
 	
-	<button type="button" 
-	        class="btn btn-outline-success btn-block"
-	        onclick="">
-	</button>
+	<c:if test="${not empty content.files }">
+		<c:forEach var="file" items="${content.files }">
+			<button type="button" class="btn btn-outline-success btn-block"
+			        onclick="">${file.originalFilename }
+			</button>
+		</c:forEach>
+	</c:if>
 	
 	<textarea class="form-control" name="boardContent" placeholder="내용" required>${content.boardContent }</textarea>
 </div>

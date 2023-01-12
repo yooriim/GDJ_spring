@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bs.spring.board.model.dao.BoardDao;
@@ -15,6 +16,7 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao dao;	
 	private SqlSessionTemplate session;
 	
+	@Autowired
 	public BoardServiceImpl(BoardDao dao,SqlSessionTemplate session) {
 		super();
 		this.dao = dao;

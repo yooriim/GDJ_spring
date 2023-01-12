@@ -11,7 +11,13 @@
 </jsp:include>
 
 <section id="board-container" class="container">
+	<div style="display:flex;justify-content:space-between;align-items:center">
         <p>총 ${totalContents }건의 게시물이 있습니다.</p>
+		<button class="btn btn-outline-primary my-2 my-sm-0" 
+				onclick="location.assign('${path}/board/insertBoard.do')">
+			작성하기
+		</button>
+	</div>
         
         <table id="tbl-board" class="table table-striped table-hover">
             <tr>
@@ -27,9 +33,14 @@
 		            <tr>
 		            	<td><c:out value="${b.boardNo }"/></a></td>
 		            	<td><a href="${path }/board/viewBoard.do?boardNo=${b.boardNo}"><c:out value="${b.boardTitle }"/></a></td>
-		            	<td><c:out value="${b.boardWriter }"/></td>
+		            	<td><c:out value="${b.boardWriter.userId }"/></td>
 		            	<td><c:out value="${b.boardDate }"/></td>
-		            	<td></td>
+		            	<td>
+
+		            		<c:if test="${empty b.files }">없음</c:if>
+            		        <c:if test="${not empty b.files }">있음</c:if>
+		            		
+		            	</td>
 		            	<td><c:out value="${b.boardReadCount }"/></td>
 		            </tr>
 	            </c:forEach>
@@ -37,10 +48,6 @@
             
         </table> 
         
-		<button class="btn btn-outline-primary my-2 my-sm-0" 
-				onclick="location.assign('${path}/board/insertBoard.do')">
-			작성하기
-		</button>
 		
         <div id="pageBar">
         	${pageBar }

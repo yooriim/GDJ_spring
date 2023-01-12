@@ -15,7 +15,7 @@ public interface BoardDao {
 	
 	int boardListCount(SqlSessionTemplate session);
 	
-	int insertBoard(SqlSessionTemplate session, Board b);
-	
 	Board viewBoard(SqlSessionTemplate session, int boardNo);
+	
+	int insertBoard(SqlSessionTemplate session, Board b);
 }

@@ -13,18 +13,19 @@ public class LoggerAspect {
 	//타겟 메소드가 실행되기 전에 실행하는 메소드 구현하기
 	
 	public void loggerBefore(JoinPoint jp) { //전이나 후에 실행할 메소드 선언
-		log.debug("loggerAspect 실행함");
+		//log.debug("loggerAspect 실행함");
 		//JoinPoint 객체 : aop설정에 의해 메소드가 실행될때 정보를 확인할 수 있음.
 		//타겟클래스와 메소드 확인하기
-		Signature sig=jp.getSignature();
-		log.debug(sig.getDeclaringTypeName()+" : "+sig.getName());
-		log.debug("==============");
+		
+		//Signature sig=jp.getSignature();
+		//log.debug(sig.getDeclaringTypeName()+" : "+sig.getName());
+		//log.debug("==============");
 		
 		
 	}
 	
 	public void loggerAfter(JoinPoint jp) {
-		log.debug("loggerAfter메소드 실행함");
+		//log.debug("loggerAfter메소드 실행함");
 	}
 	
 }
