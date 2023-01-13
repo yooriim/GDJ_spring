@@ -1,6 +1,6 @@
 package com.bs.spring.member.service;
 
-import java.util.Map;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +41,11 @@ public class MemberServiceImpl implements MemberService{
 	public int enrollMemberend(Member m) {
 		// TODO Auto-generated method stub
 		return dao.enrollMemberend(session,m);
+	}
+
+	@Override
+	public List<Member> selectMemberList() {
+		// TODO Auto-generated method stub
+		return dao.selectMemberList(session);
 	}
 }

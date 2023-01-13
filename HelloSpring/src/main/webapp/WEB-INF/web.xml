@@ -55,6 +55,18 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
 	<!-- 내가 만든 에러 등록하고 에러페이지 연결하기 -->
 <!-- 	<error-page>
 		<exception-type>java.lang.IllegalAccessException</exception-type>

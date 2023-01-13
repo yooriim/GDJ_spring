@@ -15,4 +15,8 @@
 		#{age},#{email},#{phone},#{address},#{hobby,typeHandler=strArr },SYSDATE)
 	</insert>
 	
+	<select id="selectMemberList" resultMap="memberMap">
+		SELECT * FROM MEMBER
+	</select>
+	
 </mapper>

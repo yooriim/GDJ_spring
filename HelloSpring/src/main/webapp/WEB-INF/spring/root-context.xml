@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DB연결 bean 등록하기 -->
@@ -27,5 +31,33 @@
 	 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 	 	<constructor-arg index="0" ref="sessionFactory"/>
 	 </bean>
+	 
+	 <!-- 
+	 	트랜젝션 매니저 등록하기
+	 	이때 dataSource는 이 위에 있는 걔
+	  -->
+	 <bean id="transactionManager"
+	 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 	<property name="dataSource" ref="dataSource"/>	 		
+	 </bean>
+	 
+	 <!-- 어노테이션으로 트랜젝션을 선언한 내용 가져올 수 있게 설정 -->
+	 <!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+	 
+	 <!-- 
+	 	xml방식으로 트랜젝션 처리하기
+	  -->
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	 	<tx:attributes>
+	 		<tx:method name="insert*"/>
+	 		<tx:method name="update*"/>
+	 	</tx:attributes>
+	 </tx:advice>
+	 
+	 <!-- 위에서 등록한 advice 내용을 aop로 적용 -->
+	 <aop:config>
+	 	<aop:pointcut expression="execution(* com.bs.spring.board.model.service..insert*(..))" id="transPoint"/>
+	 	<aop:advisor advice-ref="txAdvice" pointcut-ref="transPoint"/>	 	
+	 </aop:config>
 	 
 </beans>
