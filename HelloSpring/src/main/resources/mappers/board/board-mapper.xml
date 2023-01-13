@@ -33,6 +33,7 @@
 	</resultMap>
 	
 	
+	
 	<select id="boardList" resultMap="boardMap">
 		SELECT * FROM BOARD B
 	    JOIN MEMBER M ON B.BOARDWRITER=M.USERID 
@@ -45,8 +46,29 @@
 	</select>
 	
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO BOARD VALUES(SEQ_BOARDNO.NEXTVAL,#{boardTitle},#{boardWriter.userId},#{boardContent},SYSDATE,0)
+		INSERT INTO BOARD VALUES(SEQ_BOARDNO.NEXTVAL,
+		#{boardTitle},#{boardWriter.userId},#{boardContent},DEFAULT,DEFAULT)
+		
+		<selectKey keyProperty="boardNo" resultType="int" order="AFTER"> 
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+		</selectKey>
+	
 	</insert>
+	<!-- order="BEFORE" : 주 쿼리문을 실행하기 전에 이거 먼저 실행해라! key값을 먼저 가져오기
+				AFTER   :            한   후에
+	  -->
+	<insert id="insertAttachment" parameterType="attachment">
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTNO.NEXTVAL,#{boardNo.boardNo}
+		,#{originalFilename},#{renamedFilename},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
+	<!-- 
+		<insert id="insertAttachment" parameterType="attachment">
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTNO.NEXT
+		
+		이런식으로 작성하면 오류가 남! 근데? insert는 돼. 이럼 안되니까 스프링을 이용해서 transaction처리를 해줘야 함	
+	
+	 -->
+	
 	
 	<select id="viewBoard" parameterType="_int" resultMap="boardMap">
 		SELECT * FROM BOARD B
@@ -54,4 +76,6 @@
 	    LEFT JOIN ATTACHMENT A ON B.BOARDNO=A.BOARDNO	 
 		WHERE B.BOARDNO=#{boardNo}
 	</select>
+	
+	
 </mapper>

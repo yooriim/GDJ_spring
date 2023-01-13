@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.bs.spring.board.model.vo.Attachment;
 import com.bs.spring.board.model.vo.Board;
 
 public interface BoardDao {
@@ -18,4 +19,8 @@ public interface BoardDao {
 	Board viewBoard(SqlSessionTemplate session, int boardNo);
 	
 	int insertBoard(SqlSessionTemplate session, Board b);
+	
+	int insertAttachment(SqlSessionTemplate session,Attachment attachment);
+	
+	
 }

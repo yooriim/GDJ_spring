@@ -16,5 +16,5 @@ public interface BoardService {
 	int insertBoard(Board b);
 	
 	Board viewBoard(int boardNo);
-	
+
 }

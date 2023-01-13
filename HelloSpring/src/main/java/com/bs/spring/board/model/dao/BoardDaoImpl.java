@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.bs.spring.board.model.vo.Attachment;
 import com.bs.spring.board.model.vo.Board;
 
 @Repository
@@ -41,6 +42,12 @@ public class BoardDaoImpl implements BoardDao {
 	public Board viewBoard(SqlSessionTemplate session, int boardNo) {
 		// TODO Auto-generated method stub
 		return session.selectOne("board.viewBoard",boardNo);
+	}
+
+	@Override
+	public int insertAttachment(SqlSessionTemplate session,Attachment attachment) {
+		// TODO Auto-generated method stub
+		return session.insert("board.insertAttachment",attachment);
 	}
 	
 	
