@@ -35,4 +35,8 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return session.selectList("member.selectMemberList");
 	}
+
+	
+	
+
 }

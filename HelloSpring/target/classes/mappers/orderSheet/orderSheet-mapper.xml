@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderSheet">
+
+
+	<select id="selectFemCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE GENDER='F'
+	</select>
+	
+	<select id="selectMaleCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE GENDER='M'
+	</select>
+	
+	<select id="getDailySales" resultType="ordersheet">
+		select orderdate,sum(totalprice) as totalprice
+		from order_sheet
+		group by orderdate
+		order by orderdate
+	
+	</select>
+
+</mapper>

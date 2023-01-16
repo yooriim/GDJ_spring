@@ -15,10 +15,10 @@ public class Food {
 	private String type;
 	private Person p;
 	
-	@Autowired
-	@Qualifier(value="yeonji") //person이 여러개일 땐 qualifier로 지정할 수 있음 
-	public void setPerson(Person p) {
-		this.p=p;
-	}
+//	@Autowired
+//	@Qualifier(value="yeonji") //person이 여러개일 땐 qualifier로 지정할 수 있음 
+//	public void setPerson(Person p) {
+//		this.p=p;
+//	}
 	
 }

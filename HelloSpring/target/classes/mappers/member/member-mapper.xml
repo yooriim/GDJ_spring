@@ -19,4 +19,11 @@
 		SELECT * FROM MEMBER
 	</select>
 	
+	
+	
+	
+	
+	
+
+	
 </mapper>

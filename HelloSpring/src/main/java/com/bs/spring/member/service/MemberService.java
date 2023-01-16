@@ -13,4 +13,6 @@ public interface MemberService {
 	
 	List<Member> selectMemberList();
 	
+
+
 }

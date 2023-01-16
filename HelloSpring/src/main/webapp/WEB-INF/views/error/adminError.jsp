@@ -11,7 +11,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="error"/>
 </jsp:include>
-	<h2 style="color:red"><%=exception.getMessage() %></h2>
+	<h2 style="color:red">관리자만 접근할 수 있습니다.</h2>
 	<script>
 		setTimeout(()=>{location.replace("${path}")},3000})
 	</script>

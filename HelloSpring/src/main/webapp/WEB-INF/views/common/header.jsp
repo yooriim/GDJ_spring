@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="path" value="${ pageContext.request.contextPath}"/>
+<%@ page import="com.bs.spring.member.vo.Member" %>
     
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
 
 <!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -27,6 +28,11 @@
 		<header>
 			<div id="header-container">
 				<h2>${param.title }</h2>
+				<p>
+					시큐리티 세션값 : ${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username }
+					${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.age}
+					${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.email}                         
+				</p>
 			</div>
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="#">
@@ -65,12 +71,12 @@
 						</c:if>
 						<c:if test="${sessionScope.loginMember!=null }">
 							<span>
-								<a href="${path}/member/mypage.do"><c:out value="${loginMember.userName }"/>님,</a> 환영합니다 
+								<a href="${path}/member/mypage.do?userId=${loginMember.userId }"><c:out value="${loginMember.userId }"/>님,</a> 환영합니다 
 							</span>
 							<button class="btn btn-outline-dark my-2 my-sm-0" 
 							onclick="chattingPageOpen();">채팅하기</button>
 							<button class="btn btn-outline-success my-2 my-sm-0" 
-							onclick="location.replace('${path}/member/logoutMember.do')">로그아웃</button>
+							onclick="location.replace('${path}/logout')">로그아웃</button>
 						</c:if>
 						
 						&nbsp;&nbsp;&nbsp;
@@ -100,18 +106,19 @@
 						</button>
 					</div>
 					
-					<form action="${path }/member/loginMember.do" method="post">
+					<form action="${path }/login" method="post">
 						<div class="modal-body">
 							<input type="text" name="userId" class="form-control" placeholder="아이디 입력" required><br>
-							<input type="password" name="password" class="form-control" placeholder="비밀번호 입력" required>
-							
+							<input type="password" name="password" class="form-control" placeholder="비밀번호 입력" required>				
 																			
 						</div>
+						
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-outline-success">로그인</button>
 							<button type="button" class="btn btn-outline-success"
 							data-dismiss="modal">취소</button>
 						</div>
+						
 					</form>
 					
 				</div>

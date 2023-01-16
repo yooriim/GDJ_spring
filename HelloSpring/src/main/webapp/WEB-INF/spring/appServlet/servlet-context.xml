@@ -48,7 +48,7 @@
 			모든 항목을 다 넣어줘야 함(안넣으면 에러나욤)
 			모든 항목을 다 넣지 ㅇ낳고 사용하려면 그거만 들어있는 매개변수 있는 생성자 새로 만들어서 쓰면 댐 ㅇㅋ?
 		 -->
-		<beans:bean id="alonge" class="com.bs.spring.model.vo.Animal">
+<!-- 		<beans:bean id="alonge" class="com.bs.spring.model.vo.Animal">
 			<beans:constructor-arg index="0" value="아롱이2"/>
 			<beans:constructor-arg index="1" value="15"/>
 			<beans:constructor-arg index="2" value="남"/>
@@ -56,7 +56,7 @@
 		</beans:bean>		
 
 		<beans:bean id="dog" class="com.bs.spring.model.vo.Animal" 
-		init-method="initTest" destroy-method="destroyTest"/>
+		init-method="initTest" destroy-method="destroyTest"/> -->
 		<!-- 
 		No qualifying bean of type 'com.bs.spring.model.vo.Animal' 
 		available: expected single matching bean but found 2: alonge,dog
@@ -64,12 +64,12 @@
 		syso(a)라고 했을떄 어떤 animal을 데려와야할지 모르기때문에 ㅠ 
 			 -->
 			 
-		<beans:bean id="yeonji" class="com.bs.spring.model.vo.Person">
+<!-- 		<beans:bean id="yeonji" class="com.bs.spring.model.vo.Person">
 			<beans:property name="name" value="연지"/>
 			<beans:property name="age" value="31"/>
 			<beans:property name="myanimal" ref="alonge"/>
 			
-		</beans:bean>
+		</beans:bean> -->
 	
 		<!-- 로그인 인터셉터 등록 -->
 		<beans:bean id="logincheck" class="com.bs.spring.common.interceptor.LoginCheckInterceptor"/>
