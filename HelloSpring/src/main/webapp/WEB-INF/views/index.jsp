@@ -24,6 +24,25 @@
 	
 	<img src="${path }/resources/images/logo-spring.png" id="center-image" alt="스프링로고">
 	
+	<h3> == jpa테스트하기 == </h3>
+	<h3><a href="${path }/jpa/insert">jpa회원 저장하기</a></h3>
+		<form action="${path}/jpa/insert ">
+			<input type="text" name="userId">
+			<input type="submit" value="가입">		
+		</form>
+	<h3><a href="${path }/jpa/members">jpa회원 전체 조회하기</a></h3>
+	<h3><a href="${path }/jpa/member?id=1">jpa회원 조회하기</a></h3>
+	<h3><a href="${path }/jpa/member/search?height=180.5">jpa회원 조건 조회하기</a></h3>
+	<h3><a href="${path }/jpa/update?no=1&age=20&height=190.5&intro=새해복많이받으세요">jpa회원 수정하기</a></h3>
+	<h3><a href="${path }/jpa/delete?no=1">jpa회원 삭제하기</a></h3>
+	<h3><a href="${path }/jpa/insertMember">jpa 다대일 클래스 저장하기</a></h3>
+	<h3><a href="${path }/jpa/major?no=1">jpa 학과 조회하기</a></h3>
+	<h2>== 다대다 관계 ==</h2>
+	<h3><a href="${path }/jpa/insertStudentClub">jpa 다대다 저장하기</a></h3>
+	<h3><a href="${path }/jpa/selectStudent?no=9">jpa 다대다 조회하기</a></h3>
+	<h3><a href="${path }/jpa/selectStudent?no=9">jpa 다대다 조회하기</a></h3>
+	
+	
 </section>
 <script>
 
